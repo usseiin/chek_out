@@ -1,10 +1,10 @@
-import 'package:chekout_app/features/pricing_screen/basic_plan/basic_plan.dart';
-import 'package:chekout_app/features/pricing_screen/free_plan/free_plan_screen.dart';
-import 'package:chekout_app/features/pricing_screen/premium_plan/premium_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../widgets/top_bar.dart';
+import '../basic_plan/basic_plan.dart';
+import '../free_plan/free_plan_screen.dart';
+import '../premium_plan/premium_screen.dart';
 import '../widgets/plans_type_button.dart';
-import '../widgets/top_bar.dart';
 
 class PricingScreen extends StatefulWidget {
   const PricingScreen({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _PricingScreenState extends State<PricingScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: 'Our pricing plans',
-        height: Size(double.infinity, 65),
+        height: 60,
       ),
       body: SafeArea(
         child: Padding(

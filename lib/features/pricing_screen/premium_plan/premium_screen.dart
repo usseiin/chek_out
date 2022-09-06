@@ -1,3 +1,4 @@
+import 'package:chekout_app/features/payment_screen/screens/payment_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
@@ -8,6 +9,7 @@ class PremiumPlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int price = 80;
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -19,7 +21,7 @@ class PremiumPlanScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                '\$80',
+                '\$$price',
                 style: plansPriceTextStyle(),
               ),
               const Expanded(child: SizedBox()),
@@ -36,7 +38,16 @@ class PremiumPlanScreen extends StatelessWidget {
             style: plansheadTextStyle2(),
           ),
           const SizedBox(height: 20),
-          const PricingButton(text: 'Get Started'),
+          PricingButton(
+            text: 'Get Started',
+            onClicked: () {
+              Navigator.pushNamed(
+                context,
+                PaymentScreen.routeName,
+                arguments: 80,
+              );
+            },
+          ),
           const SizedBox(height: 20),
           ...List.generate(
             premiumList.length,

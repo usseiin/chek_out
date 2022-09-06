@@ -8,6 +8,7 @@ class FreePlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int price = 0;
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -21,7 +22,7 @@ class FreePlanScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                '\$0',
+                '\$$price',
                 style: plansPriceTextStyle(),
               ),
               const Expanded(child: SizedBox()),
@@ -38,7 +39,10 @@ class FreePlanScreen extends StatelessWidget {
             style: plansheadTextStyle2(),
           ),
           const SizedBox(height: 20),
-          const PricingButton(text: 'Free for life'),
+          PricingButton(
+            text: 'Free for life',
+            onClicked: () {},
+          ),
           const SizedBox(height: 20),
           ...List.generate(
             freeList.length,

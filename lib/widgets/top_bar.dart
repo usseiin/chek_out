@@ -9,7 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
   }) : super(key: key);
 
-  final Size height;
+  final double height;
   final String title;
 
   @override
@@ -28,9 +28,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
+      // bottom: TabBar(
+      //   tabs: [
+      //     Text('tab1'),
+      //     Text('tab1'),
+      //     Text('tab1'),
+      //   ],controller: TabController(length: 3, vsync: this),
+      // ),
     );
   }
 
   @override
-  Size get preferredSize => height;
+  Size get preferredSize => Size.fromHeight(height);
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
+import '../../../models/model.dart';
+import '../../payment_screen/screens/payment_screen.dart';
 import '../widgets/widgets.dart';
 
 class BasicPlanScreen extends StatelessWidget {
@@ -8,6 +10,8 @@ class BasicPlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int price = 35;
+    final SelectStream value = SelectStream();
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -21,10 +25,12 @@ class BasicPlanScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                '\$35',
+                '\$$price',
                 style: plansPriceTextStyle(),
               ),
-              const Expanded(child: SizedBox()),
+              const Expanded(
+                child: SizedBox(),
+              ),
               const Icon(
                 Icons.credit_card,
                 size: 40,
@@ -38,7 +44,17 @@ class BasicPlanScreen extends StatelessWidget {
             style: plansheadTextStyle2(),
           ),
           const SizedBox(height: 20),
-          const PricingButton(text: 'Get Started'),
+          PricingButton(
+            text: 'Get Started',
+            onClicked: () {
+              value.setUserAmount = 35;
+              print('done');
+              Navigator.pushNamed(
+                context,
+                PaymentScreen.routeName,
+              );
+            },
+          ),
           const SizedBox(height: 20),
           ...List.generate(
             basicList.length,

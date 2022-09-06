@@ -6,6 +6,7 @@ class CColor {
   static const Color title = Colors.black;
   static const Color background = Colors.grey;
   static const Color dtext = Colors.grey;
+  static const Color greyBackground = Colors.grey;
   static const Color ntext1 = Color(0xffffffff);
   static const Color ntext2 = Color(0xff222222);
   static const Color ltext = Colors.grey;
@@ -73,4 +74,63 @@ List<String> premiumList = [
   'Public board management',
   'Multi-board guests',
   'Attachment permissions',
+];
+
+List<Map<String, dynamic>> cryptoList = [
+  {
+    'name': 'Bitcoin',
+    'symbol': 'BTC',
+    'logo': const Icon(Icons.currency_bitcoin),
+    'address': '18Td9sG9no7HPmDQKwFi6N9bZJbjzF821x'
+  },
+  {
+    'name': 'Etherium',
+    'symbol': 'ETH',
+    'logo': const Icon(Icons.currency_bitcoin),
+    'address': '0xbfc2f23af03243fa60220037b86f00ed0ed4f5a1'
+  },
+  {
+    'name': 'Tether',
+    'symbol': 'USD',
+    'logo': const Icon(Icons.currency_bitcoin),
+    'address': 'TXj63seprxdnDNWxgwRswFjPemGmHcxSsr'
+  },
+  {
+    'name': 'Binance',
+    'symbol': 'BUSD',
+    'logo': const Icon(Icons.currency_bitcoin),
+    'address': '0xbfc2f23af03243fa60220037b86f00ed0ed4f5a1'
+  },
+  {
+    'name': 'Dogecoin',
+    'symbol': 'DOGE',
+    'logo': const Icon(Icons.currency_bitcoin),
+    'address': '0xbfc2f23af03243fa60220037b86f00ed0ed4f5a1'
+  },
+];
+
+List<Map<String, dynamic>> creditCardList = [
+  {
+    'name': 'Master Card',
+    'logo': const Icon(Icons.currency_bitcoin),
+  },
+  {
+    'name': 'VISA',
+    'logo': const Icon(Icons.currency_bitcoin),
+  },
+  {
+    'name': 'America Express',
+    'logo': const Icon(Icons.currency_bitcoin),
+  },
+  {
+    'name': 'Discover',
+    'logo': const Icon(Icons.currency_bitcoin),
+  },
+];
+
+List<Map<String, dynamic>> debitCardList = [
+  {
+    'name': 'Debit Card',
+    'logo': const Icon(Icons.currency_bitcoin),
+  },
 ];

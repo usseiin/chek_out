@@ -35,14 +35,16 @@ class PricingButton extends StatelessWidget {
   const PricingButton({
     Key? key,
     required this.text,
+    required this.onClicked,
   }) : super(key: key);
 
   final String text;
+  final VoidCallback onClicked;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onClicked,
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
