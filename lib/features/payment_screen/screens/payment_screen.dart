@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:chekout_app/features/payment_address/screen/payment_address.dart';
 
 import '../../../constants/constants.dart';
-import '../../../models/model.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/top_bar.dart';
 
@@ -41,7 +40,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final SelectStream selectStream = SelectStream();
     return Scaffold(
       appBar: const CustomAppBar(
         height: 60,
@@ -84,7 +82,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         text: 'Bank Transfer',
                         onClicked: setPayMode,
                         selectedPayModeOption: selectedPayModeOption,
-                        items: const [],
+                        items: bankTransfer,
                       ),
                       const Divider(thickness: 5),
                       const SizedBox(height: 20),
@@ -120,26 +118,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           const SizedBox(height: 50),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
+                            children: const [
+                              Text(
                                 'Total',
                                 style: TextStyle(fontSize: 22),
                               ),
-                              StreamBuilder<UserValue>(
-                                stream: selectStream.valueStream,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasData) {
-                                    final value =
-                                        (snapshot.data as UserValue).amount;
-                                    print('has value');
-                                    return Text(
-                                      '$value USD',
-                                      style: const TextStyle(fontSize: 22),
-                                    );
-                                  }
-                                  return const CircularProgressIndicator();
-                                },
-                              ),
+                              Text(
+                                '80 USD',
+                                style: TextStyle(fontSize: 22),
+                              )
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -198,7 +185,11 @@ class CryptoTypeContainer extends StatelessWidget {
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return ListTile(
-                leading: items[index]['logo'],
+                leading: Image.asset(
+                  items[index]['logo'],
+                  height: 24,
+                  width: 24,
+                ),
                 title: Text(
                   '${items[index]['name']}(${items[index]['symbol'] ?? ''})',
                 ),
@@ -239,14 +230,19 @@ class PayModeOption extends StatelessWidget {
           title: Text(text),
           trailing: (items != null)
               ? SizedBox(
-                  width: 120,
+                  width: 130,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ...List.generate(
                           items!.length,
-                          (index) => items![index]['logo'],
+                          (index) => Image.asset(
+                            items![index]['logo'],
+                            height: 25,
+                            width: 25,
+                          ),
                         ),
                       ],
                     ),

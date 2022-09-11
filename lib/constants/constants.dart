@@ -75,36 +75,36 @@ List<String> premiumList = [
   'Multi-board guests',
   'Attachment permissions',
 ];
-
+const imgPath = 'images';
 List<Map<String, dynamic>> cryptoList = [
   {
     'name': 'Bitcoin',
     'symbol': 'BTC',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/bitcoin.png',
     'address': '18Td9sG9no7HPmDQKwFi6N9bZJbjzF821x'
   },
   {
     'name': 'Etherium',
     'symbol': 'ETH',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/ethereum.png',
     'address': '0xbfc2f23af03243fa60220037b86f00ed0ed4f5a1'
   },
   {
     'name': 'Tether',
     'symbol': 'USD',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/usdt-tether.png',
     'address': 'TXj63seprxdnDNWxgwRswFjPemGmHcxSsr'
   },
   {
     'name': 'Binance',
     'symbol': 'BUSD',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/bnb.png',
     'address': '0xbfc2f23af03243fa60220037b86f00ed0ed4f5a1'
   },
   {
     'name': 'Dogecoin',
     'symbol': 'DOGE',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/dogecoin.png',
     'address': '0xbfc2f23af03243fa60220037b86f00ed0ed4f5a1'
   },
 ];
@@ -112,25 +112,32 @@ List<Map<String, dynamic>> cryptoList = [
 List<Map<String, dynamic>> creditCardList = [
   {
     'name': 'Master Card',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/master-card.png',
   },
   {
     'name': 'VISA',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/visa.png',
   },
   {
     'name': 'America Express',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/america-express.png',
   },
   {
     'name': 'Discover',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/discover.png',
   },
 ];
 
 List<Map<String, dynamic>> debitCardList = [
   {
     'name': 'Debit Card',
-    'logo': const Icon(Icons.currency_bitcoin),
+    'logo': '$imgPath/debit-card.png',
+  },
+];
+
+List<Map<String, dynamic>> bankTransfer = [
+  {
+    'name': 'Bank Transfer',
+    'logo': '$imgPath/bank-transfer.png',
   },
 ];

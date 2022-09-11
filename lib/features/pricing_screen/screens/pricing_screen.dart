@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../widgets/top_bar.dart';
-import '../basic_plan/basic_plan.dart';
-import '../free_plan/free_plan_screen.dart';
-import '../premium_plan/premium_screen.dart';
+import '../widgets/basic_plan.dart';
+import '../widgets/free_plan_screen.dart';
 import '../widgets/plans_type_button.dart';
+import '../widgets/premium_screen.dart';
 
 class PricingScreen extends StatefulWidget {
   const PricingScreen({Key? key}) : super(key: key);
