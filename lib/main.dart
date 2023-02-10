@@ -1,8 +1,10 @@
-import 'package:chekout_app/features/pricing_screen/screens/pricing_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'constants/constants.dart';
 import 'route.dart';
+import 'services/bloc/payment_screen_bloc.dart';
+import 'ui/pricing_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +18,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        backgroundColor: CColor.background,
         appBarTheme: const AppBarTheme(
           backgroundColor: CColor.topbar,
           elevation: 0,
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: const PricingScreen(),
+      home: BlocProvider(
+        create: (context) => AppStateCubit(),
+        child: const PricingScreen(),
+      ),
     );
   }
 }

@@ -15,7 +15,7 @@ class CColor {
   static const Color button = Color(0Xff62828f);
 }
 
-List<String> freeList = [
+const List<String> freeList = [
   'Limitless Tasks',
   'Two-Factor Authentication',
   'Limitless Projects',
@@ -35,7 +35,7 @@ List<String> freeList = [
   '24/7 Support',
 ];
 
-List<String> basicList = [
+const List<String> basicList = [
   'Limitless Storage',
   'Limitless Integration',
   'Limitless Dashboards',
@@ -54,7 +54,7 @@ List<String> basicList = [
   'Resources Management',
 ];
 
-List<String> premiumList = [
+const List<String> premiumList = [
   'Portfolios',
   'Goals',
   'Workload',
@@ -75,7 +75,7 @@ List<String> premiumList = [
   'Multi-board guests',
   'Attachment permissions',
 ];
-const imgPath = 'images';
+const imgPath = 'assets/images';
 List<Map<String, dynamic>> cryptoList = [
   {
     'name': 'Bitcoin',
