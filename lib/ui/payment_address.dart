@@ -15,10 +15,7 @@ class PaymentAddressScreen extends StatefulWidget {
   const PaymentAddressScreen({
     Key? key,
     required this.details,
-    // required this.detail,
   }) : super(key: key);
-
-  // final Map<String, dynamic> detail;
 
   @override
   State<PaymentAddressScreen> createState() => _PaymentAddressScreenState();

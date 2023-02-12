@@ -29,7 +29,7 @@ class RateApi {
     return RateApi(
       id: map['id'] as String,
       symbol: map['symbol'] as String,
-      currencySymbol: map['currencySymbol'] as String,
+      currencySymbol: (map['currencySymbol'] ?? map['symbol']) as String,
       currencyType: map['type'] as String,
       rateUsd: double.parse(map['rateUsd']),
     );

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../services/enum/pricing_plan.dart';
 import 'widgets/top_bar.dart';
-import 'basic_plan.dart';
+import 'plan_container.dart';
 import 'widgets/plans_type_button.dart';
 
 class PricingScreen extends StatelessWidget {
@@ -55,7 +55,12 @@ class PricingScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Expanded(
-                    child: PlanScreenContainer(plan: state.plan),
+                    child: BlocProvider.value(
+                      value: BlocProvider.of<AppStateCubit>(context),
+                      child: PlanScreenContainer(
+                        contxt: context,
+                      ),
+                    ),
                   ),
                 ],
               );

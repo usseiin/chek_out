@@ -45,7 +45,7 @@ class DataRepository {
 class RateSymbol {
   final String symbol;
   final double rate;
-  RateSymbol({
+  const RateSymbol({
     required this.symbol,
     required this.rate,
   });

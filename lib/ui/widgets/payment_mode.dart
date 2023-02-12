@@ -1,3 +1,5 @@
+import 'package:chekout_app/constants/constants.dart';
+import 'package:chekout_app/services/enum/payment_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,30 +17,27 @@ class CryptoTypeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AppStateCubit(),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            ListView.builder(
-              itemCount: items.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  onTap: () {
-                    context.read<AppStateCubit>().updateScreen('bitcoin');
-                  },
-                  leading: Image.asset(
-                    items[index]['logo'],
-                    height: 24,
-                    width: 24,
-                  ),
-                  title: Text(
-                    '${items[index]['name']}${items[index]['symbol'] != null ? '(${items[index]['symbol']})' : ""}',
-                  ),
-                );
-              },
-            )
-          ],
-        ),
+      child: Column(
+        children: [
+          ...items
+              .map((item) => ListTile(
+                    selectedColor: CColor.select,
+                    onTap: () {
+                      context
+                          .read<AppStateCubit>()
+                          .updateScreen(item["name"].toString().toLowerCase());
+                    },
+                    leading: Image.asset(
+                      item['logo'],
+                      height: 24,
+                      width: 24,
+                    ),
+                    title: Text(
+                      '${item['name']}${item['symbol'] != null ? '(${item['symbol']})' : ""}',
+                    ),
+                  ))
+              .toList(),
+        ],
       ),
     );
   }
@@ -47,10 +46,10 @@ class CryptoTypeContainer extends StatelessWidget {
 class PayModeOption extends StatelessWidget {
   const PayModeOption({
     Key? key,
-    required this.text,
+    required this.mode,
     this.items,
   }) : super(key: key);
-  final String text;
+  final PaymentMode mode;
   final List<dynamic>? items;
 
   @override
@@ -62,18 +61,18 @@ class PayModeOption extends StatelessWidget {
           leading:
               BlocBuilder<AppStateCubit, AppState>(builder: (context, state) {
             return Radio(
-              value: text,
-              groupValue: state.selectedPaymentOption,
+              value: mode.title,
+              groupValue: state.selectedPaymentOption?.title,
               onChanged: (String? val) {
                 if (val != null) {
                   context
                       .read<AppStateCubit>()
-                      .updateSelectedPaymentOption(val);
+                      .updateSelectedPaymentOption(mode);
                 }
               },
             );
           }),
-          title: Text(text),
+          title: Text(mode.title),
           trailing: (items != null)
               ? SizedBox(
                   width: 130,
@@ -98,7 +97,7 @@ class PayModeOption extends StatelessWidget {
         ),
         BlocBuilder<AppStateCubit, AppState>(
           builder: (context, state) {
-            if (state.selectedPaymentOption == text && items!.isNotEmpty) {
+            if (state.selectedPaymentOption == mode && items!.isNotEmpty) {
               return CryptoTypeContainer(items: items!);
             } else {
               return const SizedBox();

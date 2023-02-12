@@ -1,7 +1,5 @@
 import 'package:chekout_app/data/repository/repository.dart';
-import 'package:chekout_app/services/bloc/payment_screen_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'ui/approve_transaction.dart';
 import 'ui/payment_address.dart';
@@ -10,14 +8,11 @@ import 'ui/payment_screen.dart';
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case PaymentScreen.routeName:
-      // final price = settings.arguments as int;
+      final contxt = settings.arguments as BuildContext;
       return MaterialPageRoute(
         settings: settings,
-        builder: (_) => BlocProvider(
-          create: (_) => AppStateCubit(),
-          child: const PaymentScreen(
-              // price: price,
-              ),
+        builder: (_) => PaymentScreen(
+          contxt: contxt,
         ),
       );
     case PaymentAddressScreen.routeName:

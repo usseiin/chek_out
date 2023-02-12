@@ -84,7 +84,7 @@ List<Map<String, dynamic>> cryptoList = [
     'address': '18Td9sG9no7HPmDQKwFi6N9bZJbjzF821x'
   },
   {
-    'name': 'Etherium',
+    'name': 'Ethereum',
     'symbol': 'ETH',
     'logo': '$imgPath/ethereum.png',
     'address': '0xbfc2f23af03243fa60220037b86f00ed0ed4f5a1'
@@ -96,8 +96,8 @@ List<Map<String, dynamic>> cryptoList = [
     'address': 'TXj63seprxdnDNWxgwRswFjPemGmHcxSsr'
   },
   {
-    'name': 'Binance',
-    'symbol': 'BUSD',
+    'name': 'Binance-coin',
+    'symbol': 'BNB',
     'logo': '$imgPath/bnb.png',
     'address': '0xbfc2f23af03243fa60220037b86f00ed0ed4f5a1'
   },
