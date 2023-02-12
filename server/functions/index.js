@@ -1,73 +1,71 @@
 const functions = require("firebase-functions");
-
-// const { apiKey, webhookSecret } = require("../../api_key").default;
-
+const cors = require('cors')({origin: '*'});
 const { Client, resources, Webhook } = require("coinbase-commerce-node");
-Client.init('9eb456ac-07ef-4f95-af88-c61ae463f5b2');
 
-const { Change } = resources;
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
+// // Create and deploy your first functions
+// // https://firebase.google.com/docs/functions/get-started
 //
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
 
-const cors = require("cors")({ origin: "*" });
+Client.init(coinbaseApiKey);
 
-exports.createCharge = functions.https.onRequest((req, res) => {
-  cors(req, res, async () => {
-    // const chargeData = {
-    //   name: "Widget",
-    //   description: "Useless widget created by Fireship",
-    //   local_price: {
-    //     amount: 9.99,
-    //     currency: "USD",
-    //   },
-    //   pricing_type: "fixed_price",
-    //   metadata: {
-    //     user: "jeffd23",
-    //   },
-    // };
+const { Charge } = resources;
 
-    // const charge = await Change.create(chargeData);
+exports.webhookHandler = functions.https.onRequest((req, res) => {
+    const rawBody = req.rawBody;
+    const signature = req.headers['x-cc-webhook-signature'];
+    const webhookSecret = webhookSecretKey;
 
-    const product = req.body;
+    try {
+        const event = Webhook.verifyEventBody(rawBody, signature, webhookSecret);
+        console.log(event);
 
-    const charge = await Change.create(product);
+        if (event.type === 'charge:confirmed') {
+            res.send('success! transacton complete');
+        }
 
-    console.log(charge);
+        if (event.type === 'charge:created') {
+            res.send('transacton created');
+        }
 
-    res.send(charge);
-  });
+        if (event.type === 'charge:delayed') {
+            res.send('charges delayed');
+        }
+
+        if (event.type === 'charge:failed') {
+            res.send('transaction failed');
+        }
+
+        if (event.type === 'charge:pending') {
+            res.send('transacton pending');
+        }
+
+        if (event.type === 'charge:resolved') {
+            res.send('transaction resolve');
+        }
+
+        res.send(`success ${event.id}`);
+    } catch (error) {
+        functions.logger.error(error);
+    }
 });
 
-exports.webhookHandler = functions.https.onResquest( async(req, res) => {
-  const rawBody = req.rawBody;
+exports.createCharge = functions.https.onRequest(
+    (req, res) => {
+        cors(req, res, async () => {
+          // TODO get real product data from database
+      
+          const chargeData = req.body;
+      
+          const charge = await Charge.create(chargeData);
+          console.log(charge);
+      
+          res.send(charge);
+        });
+      }
+);
 
-  const signature = req.headers["x-cc-webhook-signature"];
 
-  try {
-    const event = Webhook.verifyEventBody(rawBody, signature, '801e77c6-1546-48b0-9602-8ea2acf99885');
-
-    if (event.type === "charge:pending") {
-    }
-    if (event.type === "charge:confirmed") {
-    }
-    if (event.type === "charge:failed") {
-    }
-    if (event.type === "charge:delayed") {
-    }
-    if (event.type === "charge:resolved") {
-    }
-    if (event.type === "charge:created") {
-    }
-
-    res.send(`sucess ${event.id}`);
-  } catch (error) {
-    functions.logger.error(error);
-    res.status(400).send("failure");
-  }
-});
